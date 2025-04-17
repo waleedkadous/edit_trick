@@ -204,15 +204,15 @@ def apply_edits(text: str, edits: List[Dict[str, str]]) -> str:
     """
     modified_text = text
     
-    # Sort edits by position in the text (earliest first)
-    sorted_edits = sorted(
-        [(edit, text.find(edit["section_start"])) for edit in edits if text.find(edit["section_start"]) != -1],
-        key=lambda x: x[1]
-    )
-    
-    # Apply edits from last to first to avoid changing positions
-    for edit, position in reversed(sorted_edits):
+    # Apply each edit directly
+    for edit in edits:
         section_start = edit["section_start"]
+        position = modified_text.find(section_start)
+        
+        # Skip if the section marker isn't found
+        if position == -1:
+            continue
+            
         heading = edit["heading"] + "\n\n"
         
         modified_text = (
