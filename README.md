@@ -1,10 +1,10 @@
-# Edit Trick Demonstration
+# Edit Trick
 
-This project demonstrates the "edit trick" - a more efficient approach to using LLMs for document modification tasks.
+This project demonstrates the "edit trick" - a more efficient approach to using LLMs for document modification tasks that reduces token usage, processing time, and handles longer documents.
 
 ## The Problem
 
-When using LLMs to modify or annotate documents (adding headers, summarizing, etc.), the common approach is to pass the entire document to the LLM and have it return the modified version. This works but is inefficient in terms of:
+When using LLMs to modify or annotate documents (adding headlines, inserting footnotes or links etc), the obvious approach is to pass the entire document to the LLM and have it return the modified version. This works but is inefficient in terms of:
 
 - Token usage (cost)
 - Processing time
@@ -14,9 +14,8 @@ When using LLMs to modify or annotate documents (adding headers, summarizing, et
 
 Instead of processing the entire document, the "edit trick" involves:
 
-1. Breaking the document into logical sections
-2. Having the LLM generate a list of specific edits to apply
-3. Applying those edits to the original document
+1. Having the LLM generate a list of specific edits to apply
+2. Applying those edits to the original document
 
 This approach is:
 - Faster ⚡
@@ -27,7 +26,16 @@ This approach is:
 ## Installation
 
 ```bash
-pip install -e .
+# Clone the repository
+git clone https://github.com/waleedkadous/edit-trick.git
+cd edit-trick
+
+# Create and activate a virtual environment using uv
+uv venv
+source .venv/bin/activate
+
+# Install in development mode
+uv pip install -e .
 ```
 
 ## Usage
